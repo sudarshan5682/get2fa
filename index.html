@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📨 Mail Shop🛒 - 2FA Generator</title>
+    <title> Mail Shop - 2FA Generator</title>
     
     <script src="https://cdn.jsdelivr.net/npm/hi-base32@0.5.1/build/base32.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -13,7 +13,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
         body { background-color: #0b0c10; color: #ffffff; padding: 10px; display: flex; flex-direction: column; align-items: center; }
         
-        /* Navbar Header */
         .header-bar { width: 100%; max-width: 450px; display: flex; justify-content: space-between; align-items: center; padding: 12px 5px; border-bottom: 1px solid #14161d; margin-bottom: 25px; }
         .brand { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 16px; }
         .brand-logo { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
@@ -22,24 +21,12 @@
         .status-badge { background-color: #111b15; color: #1bd1a1; padding: 4px 10px; border-radius: 20px; font-size: 12px; display: flex; align-items: center; gap: 6px; border: 1px solid #142c1e; }
         .status-dot { width: 8px; height: 8px; background-color: #1bd1a1; border-radius: 50%; }
 
-        /* Main Dashboard Container */
         .dashboard { width: 100%; max-width: 450px; background: #111217; border-radius: 16px; border: 1px solid #1e222b; padding: 20px; box-shadow: 0px 10px 30px rgba(0,0,0,0.7); margin-bottom: 20px; }
         
-        /* App Branding Title */
         .app-title-area { text-align: center; margin-bottom: 25px; }
         .app-avatar { width: 85px; height: 85px; border-radius: 50%; margin: 0 auto 12px; display: block; object-fit: cover; border: none; }
         
-        /* শুধু টেক্সটের ওপর চমৎকার গ্রেডিয়েন্ট ইফেক্ট (সব লেখায় কার্যকর) */
-        .logo-text, 
-        .hero-title, 
-        .btn-content,
-        .custom-guide-title,
-        .custom-guide-steps span,
-        .custom-guide-steps strong,
-        .input-label,
-        .subtitle,
-        .tab,
-        .footer-text {
+        .logo-text, .hero-title, .btn-content, .custom-guide-title, .custom-guide-steps span, .custom-guide-steps strong, .input-label, .subtitle, .tab, .footer-text {
             background: linear-gradient(135deg, #ff007f 0%, #ff5e00 25%, #ffcc00 50%, #00ff66 75%, #0099ff 100%) !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
@@ -49,61 +36,156 @@
             display: inline-block;
         }
 
-        /* ইমোজিগুলোকে আসল কালারে ফিরিয়ে আনার ম্যাজিক */
-        .logo-text span.emoji, 
-        .hero-title span.emoji, 
-        .btn-content span.emoji,
-        .footer-text span.emoji {
+        .logo-text span.emoji, .hero-title span.emoji, .btn-content span.emoji, .footer-text span.emoji {
             background: none !important;
             -webkit-text-fill-color: initial !important;
             text-fill-color: initial !important;
             display: inline-block;
         }
         
-        /* Subtitle */
         .subtitle { font-size: 14px; letter-spacing: 0.5px; margin-top: 5px; }
-
-        /* Tab Switcher */
         .tab-container { display: flex; background: #16181f; border-radius: 10px; border: 1px solid #252936; padding: 2px; margin-bottom: 20px; }
         .tab { flex: 1; padding: 14px; text-align: center; border-radius: 8px; font-size: 14px; box-shadow: 0 0 15px rgba(255, 0, 127, 0.2); }
 
-        /* Input Credentials Area */
         .textarea-wrapper { position: relative; width: 100%; margin-bottom: 20px; }
         textarea { width: 100%; height: 130px; background: #16181f; border: 1px solid #2a2f3d; border-radius: 10px; padding: 15px 65px 15px 15px; color: #fff; font-size: 14px; resize: none; outline: none; transition: 0.3s; font-family: monospace; }
         textarea:focus { border-color: #ff007f; box-shadow: 0 0 10px rgba(255, 0, 127, 0.2); }
         
-        /* Floating Action Buttons inside Textarea */
         .floating-actions { position: absolute; right: 12px; top: 12px; display: flex; flex-direction: column; gap: 12px; }
         .action-icon-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-size: 11px; gap: 2px; font-weight: bold; }
         .action-icon-btn i { font-size: 18px; }
-        
         .action-icon-btn.paste-btn { color: #0099ff; }
         .action-icon-btn.clear-btn { color: #ff007f; }
 
-        /* আপনার দেওয়া বাটন স্টাইল */
-        .read-btn {
-            width: 100%; 
-            padding: 15px;
-            border-radius: 10px; 
-            font-size: 15px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            letter-spacing: 1px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px;
-            background: #111214 !important;
-            border: 2px solid #ff007f !important;
-            transition: all 0.3s ease;
-        }
-        .read-btn:hover {
-            border-color: #0099ff !important;
-            box-shadow: 0 0 15px rgba(0, 153, 255, 0.4);
-        }
+        .read-btn { width: 100%; padding: 15px; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #111214 !important; border: 2px solid #ff007f !important; transition: all 0.3s ease; }
+        .read-btn:hover { border-color: #0099ff !important; box-shadow: 0 0 15px rgba(0, 153, 255, 0.4); }
 
-        /* Output Display Area */
         .output-box { margin-top: 20px; background: #16181f; border-radius: 10px; padding: 20px 15px; display: none; border: 1px solid #2a2f3d; text-align: center; }
+        #copy-notice { font-size: 13px; color: #ff007f; margin-bottom: 12px; font-weight: bold; }
+        #code-display { font-size: 42px; font-weight: bold; color: #ff007f; letter-spacing: 5px; margin-bottom: 10px; cursor: pointer; display: inline-block; padding: 0 10px; border-radius: 8px; transition: background 0.2s; }
+        #code-display:hover { background: #202430; }
+        #timer { font-size: 14px; color: #0099ff; font-weight: bold; }
+
+        .guide-container { width: 100%; max-width: 450px; background: #111217; border-radius: 16px; border: 1px solid #1e222b; padding: 20px; margin-bottom: 25px; }
+        .guide-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .lang-switcher { display: flex; background: #16181f; border-radius: 20px; padding: 2px; border: 1px solid #252936; }
+        .lang-btn { padding: 6px 14px; border-radius: 18px; font-size: 12px; cursor: pointer; color: #a0a5b5; background: none; border: none; font-weight: bold; transition: 0.2s; }
+        .lang-btn.active { background: #ff007f; color: #fff; }
+
+        .step-item { margin-bottom: 18px; text-align: left; }
+        .step-item:last-child { margin-bottom: 0; }
+        .step-badge { background: #16181f; color: #ff007f; width: 100%; text-align: center; padding: 4px 0; border-radius: 4px; font-size: 12px; font-weight: bold; margin-bottom: 8px; border: 1px solid #202430; }
+        .step-text { font-size: 13px; line-height: 1.6; }
+        .footer { margin-top: 15px; font-size: 13px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; }
+        .footer i { color: #ff007f !important; font-size: 14px; background: none !important; -webkit-text-fill-color: initial !important; }
+    </style>
+</head>
+<body>
+
+    <div class="header-bar">
+        <div class="brand">
+            <img src="https://i.ibb.co.com/0pdLSK4R/1000027879.jpg" class="brand-logo" alt="Logo" onerror="this.src='https://placehold.co/32x32?text=MS'">
+            <div class="logo-text">Mail Shop</div>
+        </div>
+        <div class="header-right">
+            <div class="status-badge"><div class="status-dot"></div>Ready</div>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="app-title-area">
+            <img src="https://i.ibb.co.com/0pdLSK4R/1000027879.jpg" class="app-avatar" alt="Logo">
+            <div class="hero-title">Mail Shop</div>
+            <div class="subtitle">Generate Secret 2FA Login Codes</div>
+        </div>
+
+        <div class="tab-container"><div class="tab">2FA Key Generator</div></div>
+
+        <span class="input-label">Credentials</span>
+        <div class="textarea-wrapper">
+            <textarea id="secret-key" placeholder="Paste your 2FA Secret Key..."></textarea>
+            <div class="floating-actions">
+                <button class="action-icon-btn paste-btn" onclick="pasteKey()"><i class="far fa-clipboard"></i>Paste</button>
+                <button class="action-icon-btn clear-btn" onclick="clearKey()"><i class="far fa-times-circle"></i>Clear</button>
+            </div>
+        </div>
+
+        <button class="read-btn" onclick="startGenerator()"><div class="btn-content">GET CODES</div></button>
+
+        <div class="output-box" id="output-area">
+            <div id="copy-notice">Click code to copy</div>
+            <div id="code-display" onclick="copyCode()">- - - - - -</div>
+            <div id="timer"></div>
+        </div>
+    </div>
+
+    <div class="guide-container">
+        <div class="guide-header">
+            <div class="custom-guide-title" id="guide-title">GUIDE</div>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="btn-bn" onclick="switchLanguage('bn')">বাংলা</button>
+                <button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">English</button>
+            </div>
+        </div>
+
+        <div id="guide-steps" class="custom-guide-steps">
+            <div class="step-item">
+                <div class="step-badge">1</div>
+                <div class="step-text" id="step1"><span>Select Gmail or Hotmail / Outlook from above.</span></div>
+            </div>
+            <div class="step-item">
+                <div class="step-badge">2</div>
+                <div class="step-text" id="step2"><span>For Gmail, enter only Gmail address. For Hotmail/Outlook , enter with Details.</span></div>
+            </div>
+            <div class="step-item">
+                <div class="step-badge">3</div>
+                <div class="step-text" id="step3"><span>Clicking Get Codes will open the mail Inbox below with Refresh and Close buttons. Clicking Refresh will update the Inbox, and clicking Close will exit the Inbox.</span></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let timerInterval;
+    let currentCode = "";
+
+    const langData = {
+        bn: {
+            subtitle: "ব্যবহার নির্দেশিকা",
+            step1: "উপরে থেকে Gmail বা Hotmail / Outlook সিলেক্ট করুন।",
+            step2: "Gmail হলে শুধু Gmail address। Hotmail/Outlook হলে Details সহ দিন।",
+            step3: "Get Codes এ ক্লিক করলে নিচে মেইল এর Inbox ওপেন হবে Refresh এবং Close বাটন পাবেন Refresh বাটনে কিলিক করলে মেইন এর Inbox Refresh হবে Close বাটনে কিলিক করলে Inbox থেকে বের হয়ে যাবে।"
+        },
+        en: {
+            subtitle: "GUIDE",
+            step1: "Select Gmail or Hotmail / Outlook from above.",
+            step2: "For Gmail, enter only Gmail address. For Hotmail/Outlook, enter with Details.",
+            step3: "Clicking Get Codes will open the mail Inbox below with Refresh and Close buttons. Clicking Refresh will update the Inbox, and clicking Close will exit the Inbox."
+        }
+    };
+
+    function switchLanguage(lang) {
+        document.getElementById('guide-title').innerText = langData[lang].subtitle;
+        document.getElementById('step1').innerText = langData[lang].step1;
+        document.getElementById('step2').innerText = langData[lang].step2;
+        document.getElementById('step3').innerText = langData[lang].step3;
+
+        if (lang === 'bn') {
+            document.getElementById('btn-bn').classList.add('active');
+            document.getElementById('btn-en').classList.remove('active');
+        } else {
+            document.getElementById('btn-en').classList.add('active');
+            document.getElementById('btn-bn').classList.remove('active');
+        }
+    }
+
+    // [Rest of your original script remains the same]
+    async function pasteKey() { try { const text = await navigator.clipboard.readText(); document.getElementById('secret-key').value = text; } catch (err) { alert('Clipboard access denied'); } }
+    function clearKey() { document.getElementById('secret-key').value = ''; document.getElementById('output-area').style.display = 'none'; }
+    function generateTOTP(secret) { try { let cleanedSecret = secret.replace(/\s+/g, "").toUpperCase(); let keyBytes = base32.decode.asBytes(cleanedSecret); let epoch = Math.floor(Date.now() / 1000); let timeBlock = Math.floor(epoch / 30); let timeHex = timeBlock.toString(16).padStart(16, '0'); let keyWords = CryptoJS.lib.WordArray.create(new Uint8Array(keyBytes)); let msgWords = CryptoJS.enc.Hex.parse(timeHex); let hmac = CryptoJS.HmacSHA1(msgWords, keyWords).toString(CryptoJS.enc.Hex); let offset = parseInt(hmac.substring(hmac.length - 1), 16); let otp = (parseInt(hmac.substr(offset * 2, 8), 16) & 0x7fffffff) + ''; return otp.substr(otp.length - 6, 6).padStart(6, '0'); } catch (e) { return "ERROR"; } }
+    function startGenerator() { let rawSecret = document.getElementById('secret-key').value; if (!rawSecret.trim()) { alert("Enter Secret Key!"); return; } document.getElementById('output-area').style.display = 'block'; function updateCode() { let code = generateTOTP(rawSecret); document.getElementById('code-display').innerText = code; } updateCode(); timerInterval = setInterval(updateCode, 1000); }
+</script>
+</body>
+</html>        .output-box { margin-top: 20px; background: #16181f; border-radius: 10px; padding: 20px 15px; display: none; border: 1px solid #2a2f3d; text-align: center; }
         #copy-notice { font-size: 13px; color: #ff007f; margin-bottom: 12px; font-weight: bold; }
         #code-display { font-size: 42px; font-weight: bold; color: #ff007f; letter-spacing: 5px; margin-bottom: 10px; cursor: pointer; display: inline-block; padding: 0 10px; border-radius: 8px; transition: background 0.2s; }
         #code-display:hover { background: #202430; }

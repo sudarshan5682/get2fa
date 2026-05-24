@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mail Shop - 2FA Generator</title>
     <style>
+        /* CSS কোড সবসময় এখানে থাকবে */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-        body { background-color: #0b0c10; color: #ffffff; padding: 10px; display: flex; flex-direction: column; align-items: center; }
+        body { background-color: #0b0c10; color: #ffffff; padding: 20px; display: flex; flex-direction: column; align-items: center; }
         
-        /* গ্রেডিয়েন্ট টেক্সট এর জন্য ক্লাস */
         .gradient-text {
             background: linear-gradient(135deg, #ff007f 0%, #ff5e00 25%, #ffcc00 50%, #00ff66 75%, #0099ff 100%);
             -webkit-background-clip: text;
@@ -16,17 +16,19 @@
             font-weight: 800;
         }
 
-        .guide-container { width: 100%; max-width: 450px; background: #111217; border-radius: 16px; border: 1px solid #1e222b; padding: 20px; margin-top: 20px; }
+        .guide-container { width: 100%; max-width: 450px; background: #111217; border-radius: 16px; border: 1px solid #1e222b; padding: 20px; }
         .guide-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         
         .lang-switcher { display: flex; background: #16181f; border-radius: 20px; padding: 2px; border: 1px solid #252936; }
         .lang-btn { padding: 6px 14px; border-radius: 18px; font-size: 12px; cursor: pointer; color: #a0a5b5; background: none; border: none; font-weight: bold; }
         .lang-btn.active { background: #ff007f; color: #fff; }
 
-        .step-item { margin-bottom: 18px; color: #ccc; }
-        .step-badge { color: #ff007f; font-weight: bold; margin-bottom: 5px; }
+        .step-item { margin-bottom: 18px; color: #fff; }
+        .step-badge { background: #16181f; color: #ff007f; text-align: center; padding: 5px; border-radius: 4px; font-weight: bold; margin-bottom: 8px; border: 1px solid #202430; }
         
-        .output-box { margin-top: 20px; background: #16181f; border-radius: 10px; padding: 20px 15px; border: 1px solid #2a2f3d; text-align: center; }
+        /* নতুন যুক্ত স্টাইল যা আগে ভেঙে ছিল */
+        .output-box { margin-top: 20px; background: #16181f; border-radius: 10px; padding: 20px; border: 1px solid #2a2f3d; text-align: center; }
+        #code-display { font-size: 42px; font-weight: bold; color: #ff007f; margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -56,54 +58,34 @@
         </div>
     </div>
 
-<script>
-    const langData = {
-        bn: {
-            subtitle: "ব্যবহার নির্দেশিকা",
-            step1: "উপরে থেকে Gmail বা Hotmail / Outlook সিলেক্ট করুন।",
-            step2: "Gmail হলে শুধু Gmail address। Hotmail/Outlook হলে Details সহ দিন।",
-            step3: "Get Codes এ ক্লিক করলে নিচে মেইল এর Inbox ওপেন হবে।"
-        },
-        en: {
-            subtitle: "GUIDE",
-            step1: "Select Gmail or Hotmail / Outlook from above.",
-            step2: "For Gmail, enter only Gmail address. For Hotmail/Outlook, enter with Details.",
-            step3: "Clicking Get Codes will open the mail Inbox below with Refresh and Close buttons."
+    <script>
+        const langData = {
+            bn: {
+                subtitle: "ব্যবহার নির্দেশিকা",
+                step1: "উপরে থেকে Gmail বা Hotmail / Outlook সিলেক্ট করুন।",
+                step2: "Gmail হলে শুধু Gmail address। Hotmail/Outlook হলে Details সহ দিন।",
+                step3: "Get Codes এ ক্লিক করলে নিচে মেইল এর Inbox ওপেন হবে Refresh এবং Close বাটন পাবেন।"
+            },
+            en: {
+                subtitle: "GUIDE",
+                step1: "Select Gmail or Hotmail / Outlook from above.",
+                step2: "For Gmail, enter only Gmail address. For Hotmail/Outlook, enter with Details.",
+                step3: "Clicking Get Codes will open the mail Inbox below with Refresh and Close buttons."
+            }
+        };
+
+        function switchLanguage(lang) {
+            document.getElementById('guide-title').innerText = langData[lang].subtitle;
+            document.getElementById('step1').innerText = langData[lang].step1;
+            document.getElementById('step2').innerText = langData[lang].step2;
+            document.getElementById('step3').innerText = langData[lang].step3;
+
+            document.getElementById('btn-bn').classList.toggle('active', lang === 'bn');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
         }
-    };
-
-    function switchLanguage(lang) {
-        document.getElementById('guide-title').innerText = langData[lang].subtitle;
-        document.getElementById('step1').innerText = langData[lang].step1;
-        document.getElementById('step2').innerText = langData[lang].step2;
-        document.getElementById('step3').innerText = langData[lang].step3;
-
-        document.getElementById('btn-bn').classList.toggle('active', lang === 'bn');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    }
-</script>
+    </script>
 </body>
-</html>            <textarea id="secret-key" placeholder="Paste your 2FA Secret Key..."></textarea>
-            <div class="floating-actions">
-                <button class="action-icon-btn paste-btn" onclick="pasteKey()"><i class="far fa-clipboard"></i>Paste</button>
-                <button class="action-icon-btn clear-btn" onclick="clearKey()"><i class="far fa-times-circle"></i>Clear</button>
-            </div>
-        </div>
-
-        <button class="read-btn" onclick="startGenerator()"><div class="btn-content">GET CODES</div></button>
-
-        <div class="output-box" id="output-area">
-            <div id="copy-notice">Click code to copy</div>
-            <div id="code-display" onclick="copyCode()">- - - - - -</div>
-            <div id="timer"></div>
-        </div>
-    </div>
-
-    <div class="guide-container">
-        <div class="guide-header">
-            <div class="custom-guide-title" id="guide-title">GUIDE</div>
-            <div class="lang-switcher">
-                <button class="lang-btn" id="btn-bn" onclick="switchLanguage('bn')">বাংলা</button>
+</html>                <button class="lang-btn" id="btn-bn" onclick="switchLanguage('bn')">বাংলা</button>
                 <button class="lang-btn active" id="btn-en" onclick="switchLanguage('en')">English</button>
             </div>
         </div>
